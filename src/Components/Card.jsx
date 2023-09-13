@@ -1,22 +1,35 @@
-import React from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+export default function Card(props) {
+    const { odontologo } = props
+    const [favs, setFavs] = useState(
+        localStorage.getItem("favUsers")
+        ? JSON.parse(localStorage.getItem("favUsers"))
+        : []
+    )
+    const addFav = (user)=>{
+
+        const newFavs = [...favs, user]
+        setFavs(newFavs)
+        localStorage.setItem("favUsers",JSON.stringify(newFavs))
+    }
 
 
-const Card = ({ name, username, id }) => {
 
-  const addFav = ()=>{
-    // Aqui iria la logica para agregar la Card en el localStorage
-  }
 
-  return (
-    <div className="card">
-        {/* En cada card deberan mostrar en name - username y el id */}
-
-        {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
-
-        {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
-        <button onClick={addFav} className="favButton">Add fav</button>
-    </div>
-  );
-};
-
-export default Card;
+    return (
+        <div className="card">
+                <p>
+                    <span className='titulo'>Nombre:</span> {odontologo.name}
+                </p>
+                <p>
+                    <span className='titulo'>User:</span> {odontologo.username}
+                </p>
+            <button onClick={() => addFav(odontologo)} className="favButton">Add fav</button>
+            <Link to={`/Dentis/${odontologo.id}`}>
+                <button >Profile</button>
+            </Link>
+        </div>
+    );
+}
