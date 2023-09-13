@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import imagen from '../imagen/doctor.jpg'
 
 export default function Card(props) {
     const { odontologo } = props
@@ -23,6 +24,7 @@ export default function Card(props) {
                 <p>
                     <span className='titulo'>Nombre:</span> {odontologo.name}
                 </p>
+                <img src={imagen} alt="" className="imgDoc" />
                 <p>
                     <span className='titulo'>User:</span> {odontologo.username}
                 </p>

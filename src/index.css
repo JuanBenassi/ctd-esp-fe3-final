@@ -121,3 +121,11 @@ tr:nth-child(even) {
   color: white;
 }
 
+.imgDoc{
+  width: 200px;
+}
+
+.error{
+  color: red;
+}
+
